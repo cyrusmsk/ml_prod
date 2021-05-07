@@ -1,0 +1,7 @@
+input_data_path: "data/raw/train.csv"
+output_model_path: "models/model.pkl"
+metric_path: "models/metrics.json"
+defaults:
+  - splitting_params: defaul_split
+  - train_params: catboost
+  - feature_params: all_features
