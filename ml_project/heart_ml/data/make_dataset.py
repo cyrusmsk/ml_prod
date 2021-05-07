@@ -12,6 +12,11 @@ def read_data(path: str) -> pd.DataFrame:
     return data
 
 
+def write_data(data: pd.DataFrame, path: str) -> str:
+    data.to_csv(path)
+    return path
+    
+
 def split_train_val_data(
     data: pd.DataFrame, params: SplittingParams
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
