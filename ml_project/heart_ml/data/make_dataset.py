@@ -20,9 +20,6 @@ def write_data(data: pd.DataFrame, path: str) -> str:
 def split_train_val_data(
     data: pd.DataFrame, params: SplittingParams
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
-    """
-    :rtype: object
-    """
     train_data, val_data = train_test_split(
         data, test_size=params.val_size, random_state=params.random_state
     )
