@@ -5,7 +5,7 @@ from typing import List, Tuple
 import pandas as pd
 import pytest
 from py._path.local import LocalPath
-from catboost import CatboostClassifier
+from catboost import CatBoostClassifier
 
 from heart_ml.data.make_dataset import read_data
 from heart_ml.entities import TrainingParams
@@ -40,7 +40,7 @@ def features_and_target(
 def test_train_model(features_and_target: Tuple[pd.DataFrame, pd.Series]):
     features, target = features_and_target
     model = train_model(features, target, train_params=TrainingParams())
-    assert isinstance(model, CatboostClassifier)
+    assert isinstance(model, CatBoostClassifier)
     assert model.predict(features).shape[0] == target.shape[0]
 
 
@@ -73,7 +73,7 @@ def test_evaluate_model(features_and_target: Tuple[pd.DataFrame, pd.Series]):
 def test_desirialize_model(tmpdir: LocalPath):
     expected_output = tmpdir.join("model.pkl")
     n_estimators = 10
-    model = CatboostClassifier(n_estimators=n_estimators)
+    model = CatBoostClassifier(n_estimators=n_estimators)
     real_output = serialize_model(model, expected_output)
     model = deserialize_model(real_output)
-    assert isinstance(model, CatboostClassifier)
+    assert isinstance(model, CatBoostClassifier)

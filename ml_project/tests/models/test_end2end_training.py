@@ -1,10 +1,9 @@
-
 import os
 from typing import List
 
 from py._path.local import LocalPath
 
-from heart_ml.train_model import train_pipeline
+from heart_ml.models.train_model import train_pipeline
 from heart_ml.entities import (
     TrainingPipelineParams,
     SplittingParams,

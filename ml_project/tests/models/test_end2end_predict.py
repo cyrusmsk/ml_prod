@@ -1,12 +1,11 @@
-
 import os
 from typing import List
 
 from py._path.local import LocalPath
 
-from heart_ml.predict_model import predict_pipeline
+from heart_ml.models.predict_model import predict_pipeline
 from heart_ml.entities import (
-    PredcitPipelineParams,
+    PredictPipelineParams,
     FeatureParams,
 )
 

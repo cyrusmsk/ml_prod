@@ -5,7 +5,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 
-from heart_ml.enities.feature_params import FeatureParams
+from heart_ml.entities.feature_params import FeatureParams
 
 
 def process_categorical_features(categorical_df: pd.DataFrame) -> pd.DataFrame:

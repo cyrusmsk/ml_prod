@@ -1,4 +1,4 @@
- import json
+import json
 import logging
 import sys
 
@@ -7,7 +7,7 @@ import pandas as pd
 
 from heart_ml.data import read_data, split_train_val_data
 from heart_ml.entities.train_pipeline_params import (
-    TrainingPipelineParams,    ``
+    TrainingPipelineParams,
     read_training_pipeline_params,
 )
 from heart_ml.features import make_features

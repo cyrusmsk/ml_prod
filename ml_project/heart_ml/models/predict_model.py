@@ -5,14 +5,14 @@ import sys
 import click
 import pandas as pd
 
-from heart_ml.data import write_data
-from heart_ml.enities.predict_pipeline_params import (
+from heart_ml.data.make_dataset import write_data
+from heart_ml.entities.predict_pipeline_params import (
     PredictPipelineParams,
     read_predict_pipeline_params,
 )
 from heart_ml.features import make_features
 from heart_ml.features.build_features import build_transformer
-from heart_ml.models import (
+from heart_ml.models.model_fit_predict import (
     deserialize_model,
     predict_model,
 )

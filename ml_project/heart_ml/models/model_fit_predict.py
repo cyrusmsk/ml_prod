@@ -8,7 +8,7 @@ from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 from catboost import CatBoostClassifier
 
 from heart_ml.entities.train_params import TrainingParams
-from heart_ml.entities.features_params import FeatureParams
+from heart_ml.entities.feature_params import FeatureParams
 
 ClassifierModel = Union[RandomForestClassifier, CatBoostClassifier]
 
@@ -16,8 +16,8 @@ ClassifierModel = Union[RandomForestClassifier, CatBoostClassifier]
 def train_model(
     features: pd.DataFrame, target: pd.Series, train_params: TrainingParams
 ) -> ClassifierModel:
-    if train_params.model_type == "CatboostClassifier":
-        model = CatboostClassifier(
+    if train_params.model_type == "CatBoostClassifier":
+        model = CatBoostClassifier(
             random_seed=train_params.random_state
         )
     elif train_params.model_type == "RandomForestClassifier":
