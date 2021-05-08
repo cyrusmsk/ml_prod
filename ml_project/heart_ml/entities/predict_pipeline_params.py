@@ -9,7 +9,6 @@ class PredictPipelineParams:
     input_data_path: str
     output_data_path: str
     output_model_path: str
-    metrics_path: str
     feature_params: FeatureParams
 
 

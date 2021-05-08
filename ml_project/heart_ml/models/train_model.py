@@ -13,9 +13,9 @@ from heart_ml.entities.train_pipeline_params import (
 from heart_ml.features import make_features
 from heart_ml.features.build_features import extract_target, build_transformer
 from heart_ml.models import (
-    train_model,
+    train_model_func,
     serialize_model,
-    predict_model,
+    predict_model_func,
     evaluate_model,
 )
 
@@ -46,7 +46,7 @@ def train_pipeline(training_pipeline_params: TrainingPipelineParams):
 
     logger.info(f"train_features.shape is {train_features.shape}")
 
-    model = train_model(
+    model = train_model_func(
         train_features, train_target, training_pipeline_params.train_params
     )
 
@@ -56,12 +56,13 @@ def train_pipeline(training_pipeline_params: TrainingPipelineParams):
     # val_features_prepared = prepare_val_features_for_predict(
     #     train_features, val_features
     # )
-    val_features_prepared = val_features
+    # val_features_prepared = val_features
 
-    logger.info(f"val_features.shape is {val_features_prepared.shape}")
-    predicts = predict_model(
+    print(type(val_features))
+    logger.info(f"val_features.shape is {val_features.shape}")
+    predicts = predict_model_func(
         model,
-        val_features_prepared
+        val_features
     )
 
     metrics = evaluate_model(

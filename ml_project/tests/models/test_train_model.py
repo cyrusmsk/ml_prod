@@ -11,11 +11,12 @@ from heart_ml.data.make_dataset import read_data
 from heart_ml.entities import TrainingParams
 from heart_ml.entities.feature_params import FeatureParams
 from heart_ml.features.build_features import make_features, extract_target, build_transformer
-from heart_ml.models.model_fit_predict import (
-    train_model, 
+from heart_ml.models import (
+    train_model_func, 
     serialize_model,
-    predict_model,
-    deserialize_model
+    predict_model_func,
+    deserialize_model,
+    evaluate_model
 )
 
 
@@ -39,22 +40,22 @@ def features_and_target(
 
 def test_train_model(features_and_target: Tuple[pd.DataFrame, pd.Series]):
     features, target = features_and_target
-    model = train_model(features, target, train_params=TrainingParams())
+    model = train_model_func(features, target, train_params=TrainingParams())
     assert isinstance(model, CatBoostClassifier)
     assert model.predict(features).shape[0] == target.shape[0]
 
 
 def test_predict_model(features_and_target: Tuple[pd.DataFrame, pd.Series]):
     features, target = features_and_target
-    model = train_model(features, target, train_params=TrainingParams())
-    predicts = predict_model(model, features)
-    assert predicts.shape > 10
+    model = train_model_func(features, target, train_params=TrainingParams())
+    predicts = predict_model_func(model, features)
+    assert predicts.shape[0] > 1
 
 
 def test_serialize_model(tmpdir: LocalPath):
     expected_output = tmpdir.join("model.pkl")
     n_estimators = 10
-    model = CatboostClassifier(n_estimators=n_estimators)
+    model = CatBoostClassifier(n_estimators=n_estimators, verbose=0)
     real_output = serialize_model(model, expected_output)
     assert real_output == expected_output
     assert os.path.exists
@@ -62,8 +63,8 @@ def test_serialize_model(tmpdir: LocalPath):
 
 def test_evaluate_model(features_and_target: Tuple[pd.DataFrame, pd.Series]):
     features, target = features_and_target
-    model = train_model(features, target, train_params=TrainingParams())
-    predicts = predict_model(model, features)
+    model = train_model_func(features, target, train_params=TrainingParams())
+    predicts = predict_model_func(model, features)
     result_dict = evaluate_model(predicts, target)
     assert "r2_score" in result_dict.keys()
     assert "rmse" in result_dict.keys()

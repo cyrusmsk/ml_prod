@@ -33,7 +33,7 @@ def test_train_e2e(
             target_col=target_col,
             features_to_drop=features_to_drop,
         ),
-        train_params=TrainingParams(model_type="CatboostClassifier"),
+        train_params=TrainingParams(model_type="CatBoostClassifier"),
     )
     real_model_path, metrics = train_pipeline(params)
     assert metrics["r2_score"] > 0

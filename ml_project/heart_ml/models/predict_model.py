@@ -5,16 +5,16 @@ import sys
 import click
 import pandas as pd
 
-from heart_ml.data.make_dataset import write_data
+from heart_ml.data.make_dataset import write_data, read_data
 from heart_ml.entities.predict_pipeline_params import (
     PredictPipelineParams,
     read_predict_pipeline_params,
 )
 from heart_ml.features import make_features
 from heart_ml.features.build_features import build_transformer
-from heart_ml.models.model_fit_predict import (
+from heart_ml.models import (
     deserialize_model,
-    predict_model,
+    predict_model_func,
 )
 
 logger = logging.getLogger(__name__)
@@ -41,7 +41,7 @@ def predict_pipeline(predict_pipeline_params: PredictPipelineParams):
     model = deserialize_model(predict_pipeline_params.output_model_path)
     logger.info(f"model uploaded: {model}")
 
-    predicts = predict_model(
+    predicts = predict_model_func(
         model,
         predict_features
     )

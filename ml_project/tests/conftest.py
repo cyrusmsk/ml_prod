@@ -11,6 +11,18 @@ def dataset_path():
 
 
 @pytest.fixture()
+def out_path():
+    curdir = os.path.dirname(__file__)
+    return os.path.join(curdir, "out.csv")
+
+
+@pytest.fixture()
+def out_dataset_path():
+    curdir = os.path.dirname(__file__)
+    return os.path.join(curdir, "out_data.csv")
+
+
+@pytest.fixture()
 def target_col():
     return "target"
 

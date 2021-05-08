@@ -13,12 +13,13 @@ from heart_ml.entities.feature_params import FeatureParams
 ClassifierModel = Union[RandomForestClassifier, CatBoostClassifier]
 
 
-def train_model(
+def train_model_func(
     features: pd.DataFrame, target: pd.Series, train_params: TrainingParams
 ) -> ClassifierModel:
     if train_params.model_type == "CatBoostClassifier":
         model = CatBoostClassifier(
-            random_seed=train_params.random_state
+            random_seed=train_params.random_state,
+            verbose = 0
         )
     elif train_params.model_type == "RandomForestClassifier":
         model = RandomForestClassifier(
@@ -30,7 +31,7 @@ def train_model(
     return model
 
 
-def predict_model(
+def predict_model_func(
     model: ClassifierModel, features: pd.DataFrame
 ) -> np.ndarray:
     predicts = model.predict(features)

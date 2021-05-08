@@ -10,7 +10,7 @@ from heart_ml.entities.feature_params import FeatureParams
 
 def process_categorical_features(categorical_df: pd.DataFrame) -> pd.DataFrame:
     categorical_pipeline = build_categorical_pipeline()
-    return pd.DataFrame(categorical_pipeline.fit_transform(categorical_df).toarray())
+    return pd.DataFrame(categorical_pipeline.fit_transform(categorical_df))
 
 
 def build_categorical_pipeline() -> Pipeline:
@@ -36,7 +36,7 @@ def build_numerical_pipeline() -> Pipeline:
 
 
 def make_features(transformer: ColumnTransformer, df: pd.DataFrame) -> pd.DataFrame:
-    return pd.DataFrame(transformer.transform(df).toarray())
+    return pd.DataFrame(transformer.transform(df))
 
 
 def build_transformer(params: FeatureParams) -> ColumnTransformer:
