@@ -12,45 +12,34 @@ def dataset_path():
 
 @pytest.fixture()
 def target_col():
-    return "SalePrice"
+    return "target"
 
 
 @pytest.fixture()
 def categorical_features() -> List[str]:
     return [
-        "MSZoning",
-        "Neighborhood",
-        "RoofStyle",
-        "MasVnrType",
-        "BsmtQual",
-        "BsmtExposure",
-        "HeatingQC",
-        "CentralAir",
-        "KitchenQual",
-        "FireplaceQu",
-        "GarageType",
-        "GarageFinish",
-        "PavedDrive",
+        "ca",
+        "cp",
+        "exang",
+        "fbs",
+        "restecg",
+        "sex",
+        "slope",
+        "thal",
     ]
 
 
 @pytest.fixture
 def numerical_features() -> List[str]:
     return [
-        "OverallQual",
-        "MSSubClass",
-        "OverallCond",
-        "GrLivArea",
-        "GarageCars",
-        "1stFlrSF",
-        "Fireplaces",
-        "BsmtFullBath",
-        "YrSold",
-        "YearRemodAdd",
-        "LotFrontage",
+        "age",
+        "chol",
+        "oldpeak",
+        "thalach",
+        "trestbps",
     ]
 
 
 @pytest.fixture()
 def features_to_drop() -> List[str]:
-    return ["YrSold"]
+    return []
