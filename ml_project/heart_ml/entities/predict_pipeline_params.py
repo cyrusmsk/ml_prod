@@ -12,7 +12,6 @@ class PredictPipelineParams:
     feature_params: FeatureParams
 
 
-
 PredictPipelineParamsSchema = class_schema(PredictPipelineParams)
 
 
