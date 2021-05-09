@@ -5,6 +5,7 @@ import sys
 import click
 import pandas as pd
 
+
 from heart_ml.data import read_data, split_train_val_data
 from heart_ml.entities.train_pipeline_params import (
     TrainingPipelineParams,
@@ -76,7 +77,7 @@ def train_pipeline(training_pipeline_params: TrainingPipelineParams):
 
 
 @click.command(name="train_pipeline")
-@click.argument("configs/train_config.yaml")
+@click.argument("config_path")
 def train_pipeline_command(config_path: str):
     params = read_training_pipeline_params(config_path)
     train_pipeline(params)

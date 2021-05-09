@@ -1,5 +1,5 @@
 feature_params:
-  cat_features:
+  categorical_features:
     - "ca"
     - "cp"
     - "exang"
@@ -8,11 +8,11 @@ feature_params:
     - "sex"
     - "slope"
     - "thal"
-  num_features:
+  numerical_features:
     - "age"
     - "chol"
     - "oldpeak"
     - "thalach"
     - "trestbps"
-  drop_features: []
+  features_to_drop: []
   target_col: "target"
