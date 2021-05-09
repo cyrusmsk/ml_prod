@@ -19,7 +19,7 @@ def dataset_path():
 @pytest.fixture()
 def out_path():
     curdir = os.path.dirname(__file__)
-    return os.path.join(curdir, "tmp_data/out.csv")
+    return os.path.join(curdir, "tmp_data/out_data.csv")
 
 
 @pytest.fixture()

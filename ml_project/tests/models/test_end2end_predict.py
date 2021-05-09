@@ -8,11 +8,10 @@ from heart_ml.entities import (
     PredictPipelineParams,
     FeatureParams,
 )
-TMP_DATA = "tests/tmp_data"
 
 
 def test_predict_e2e(
-    tmpdir: TMP_DATA,
+    tmpdir: str,
     dataset_path: str,
     out_dataset_path: str,
     categorical_features: List[str],
@@ -20,7 +19,7 @@ def test_predict_e2e(
     target_col: str,
     features_to_drop: List[str],
 ):
-    tmp_output_model_path = tmpdir.join("model.pkl")
+    tmp_output_model_path = tmpdir + "/model.pkl"
     params = PredictPipelineParams(
         input_data_path=dataset_path,
         output_data_path=out_dataset_path,

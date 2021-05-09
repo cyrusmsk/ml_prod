@@ -20,9 +20,9 @@ def test_train_e2e(
     target_col: str,
     features_to_drop: List[str],
 ):
-    print(tmpdir)
-    expected_output_model_path = tmpdir.join("model.pkl")
-    expected_metric_path = tmpdir.join("metrics.json")
+    expected_output_model_path = tmpdir + "/model.pkl"
+    expected_metric_path = tmpdir + "/metrics.json"
+    print("here we go again", expected_metric_path)
     params = TrainingPipelineParams(
         input_data_path=dataset_path,
         output_model_path=expected_output_model_path,

@@ -50,7 +50,7 @@ def predict_pipeline(predict_pipeline_params: PredictPipelineParams):
     data["predicts"] = predicts
     
     logger.info(f"writing predicts to initial data and save file to path: {predict_pipeline_params.output_data_path}")
-    result_path = write_data(predict_pipeline_params.output_data_path)
+    result_path = write_data(data, predict_pipeline_params.output_data_path)
 
     return result_path
 

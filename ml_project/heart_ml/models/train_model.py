@@ -76,7 +76,7 @@ def train_pipeline(training_pipeline_params: TrainingPipelineParams):
 
 
 @click.command(name="train_pipeline")
-@click.argument("config_path")
+@click.argument("configs/train_config.yaml")
 def train_pipeline_command(config_path: str):
     params = read_training_pipeline_params(config_path)
     train_pipeline(params)

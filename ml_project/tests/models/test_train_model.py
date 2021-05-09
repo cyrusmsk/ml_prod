@@ -53,7 +53,7 @@ def test_predict_model(features_and_target: Tuple[pd.DataFrame, pd.Series]):
 
 
 def test_serialize_model(tmpdir: LocalPath):
-    expected_output = tmpdir.join("model.pkl")
+    expected_output = tmpdir + "/model.pkl"
     n_estimators = 10
     model = CatBoostClassifier(n_estimators=n_estimators, verbose=0)
     real_output = serialize_model(model, expected_output)
@@ -72,7 +72,7 @@ def test_evaluate_model(features_and_target: Tuple[pd.DataFrame, pd.Series]):
 
 
 def test_desirialize_model(tmpdir: LocalPath):
-    expected_output = tmpdir.join("model.pkl")
+    expected_output = tmpdir + "/model.pkl"
     n_estimators = 10
     model = CatBoostClassifier(n_estimators=n_estimators)
     real_output = serialize_model(model, expected_output)
