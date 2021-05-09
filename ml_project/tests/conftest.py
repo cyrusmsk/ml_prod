@@ -5,21 +5,27 @@ from typing import List
 
 
 @pytest.fixture()
+def tmpdir():
+    curdir = os.path.dirname(__file__)
+    return os.path.join(curdir, "tmp_data")
+
+
+@pytest.fixture()
 def dataset_path():
     curdir = os.path.dirname(__file__)
-    return os.path.join(curdir, "train_data_sample.csv")
+    return os.path.join(curdir, "tmp_data/train_data_sample.csv")
 
 
 @pytest.fixture()
 def out_path():
     curdir = os.path.dirname(__file__)
-    return os.path.join(curdir, "out.csv")
+    return os.path.join(curdir, "tmp_data/out.csv")
 
 
 @pytest.fixture()
 def out_dataset_path():
     curdir = os.path.dirname(__file__)
-    return os.path.join(curdir, "out_data.csv")
+    return os.path.join(curdir, "tmp_data/out_data.csv")
 
 
 @pytest.fixture()

@@ -53,11 +53,6 @@ def train_pipeline(training_pipeline_params: TrainingPipelineParams):
     val_features = make_features(transformer, val_df)
     val_target = extract_target(val_df, training_pipeline_params.feature_params)
 
-    # val_features_prepared = prepare_val_features_for_predict(
-    #     train_features, val_features
-    # )
-    # val_features_prepared = val_features
-
     print(type(val_features))
     logger.info(f"val_features.shape is {val_features.shape}")
     predicts = predict_model_func(
@@ -69,25 +64,15 @@ def train_pipeline(training_pipeline_params: TrainingPipelineParams):
         predicts,
         val_target
     )
-
+    logger.info(f"start writing metrics with path: {training_pipeline_params.metric_path}")
     with open(training_pipeline_params.metric_path, "w") as metric_file:
         json.dump(metrics, metric_file)
     logger.info(f"metrics is {metrics}")
 
+    logger.info(f"start serialization with path: {training_pipeline_params.output_model_path}")
     path_to_model = serialize_model(model, training_pipeline_params.output_model_path)
-
+    logger.info(f"model was serialized to {path_to_model}")
     return path_to_model, metrics
-
-
-# def prepare_val_features_for_predict(
-#     train_features: pd.DataFrame, val_features: pd.DataFrame
-# ):
-#     # small hack to work with categories
-#     train_features, val_features = train_features.align(
-#         val_features, join="left", axis=1
-#     )
-#     val_features = val_features.fillna(0)
-#     return val_features
 
 
 @click.command(name="train_pipeline")

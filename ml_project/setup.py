@@ -14,6 +14,7 @@ setup(
         "pyyaml==3.11",
         "marshmallow-dataclass==8.3.0",
         "pandas==1.1.5",
+        "catboost==0.25.1"
     ],
     license='MIT',
 )
