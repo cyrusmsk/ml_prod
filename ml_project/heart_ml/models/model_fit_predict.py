@@ -18,8 +18,7 @@ def train_model_func(
 ) -> ClassifierModel:
     if train_params.model_type == "CatBoostClassifier":
         model = CatBoostClassifier(
-            random_seed=train_params.random_state,
-            verbose = 0
+            random_seed=train_params.random_state, verbose=0
         )
     elif train_params.model_type == "RandomForestClassifier":
         model = RandomForestClassifier(
