@@ -19,7 +19,7 @@ logger.setLevel(logging.INFO)
     default=8000)
 @click.option(
     "--datapath",
-    default="../data/raw/heart.csv")
+    default="../data/raw/train.csv")
 def make_request_func(host, port, datapath):
     data = pd.read_csv(datapath)
     data.drop("target", inplace=True, axis=1)
