@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import uvicorn
 from fastapi import FastAPI, HTTPException
+from sklearn.pipeline import Pipeline
 from pydantic import BaseModel, conlist
 
 from heart_ml.models.model_fit_predict import (

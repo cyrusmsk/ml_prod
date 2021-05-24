@@ -24,7 +24,7 @@
 
 Для уменьшения размера:
 
-Пробовал образ Альпин и слим после прочтения (статьи)[https://pythonspeed.com/articles/base-image-python-docker-images/]
+Пробовал образ Alpine и Slim-buster после прочтения (статьи)[https://pythonspeed.com/articles/base-image-python-docker-images/]. Alpine не заработала установка пакета sklearn, поэтому использовал слим версию для уменьшения размера образа.
 
 Самооценка:
 
