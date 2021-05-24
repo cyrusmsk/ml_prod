@@ -10,17 +10,30 @@ from online_inference.app import app
 def datapath() -> str:
     return "data/raw/train.csv"
 
-@pytest.fixture
+
+@pytest.fixture()
+def model_path() -> str:
+    os.environ['PATH_TO_MODEL'] = 'model.pkl'
+    return os.getenv("PATH_TO_MODEL")
+
+
+@pytest.fixture()
 def client():
     with TestClient(app) as client:
         yield client
 
 
-def test_app(client) -> None:
+def test_main(client):
     response = client.get("/")
     assert response.status_code == 200
+
+
+def test_health(client):
     response = client.get("/health")
     assert response.status_code == 200
     assert response.json() == True
-    response = client.get("/abracadabra")
+
+
+def test_app(client) -> None:
+    response = client.get("/wrong_entrypoint")
     assert response.status_code >= 400
