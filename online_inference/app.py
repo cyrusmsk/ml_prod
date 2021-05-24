@@ -9,7 +9,7 @@ import uvicorn
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, conlist
 
-from ml_project.heart_ml.models.model_fit_predict import (
+from heart_ml.models.model_fit_predict import (
     ClassifierModel,
     predict_model_func,
     deserialize_model
@@ -73,7 +73,7 @@ def health() -> bool:
 
 
 @app.get("/predict/", response_model=List[ClassifierModelResponse])
-def predict(request: ClassifierModel):
+def predict(request: ClassifierModelInput):
     return make_predict(request.data, request.features, model)
 
 
