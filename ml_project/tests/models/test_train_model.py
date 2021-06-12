@@ -58,7 +58,6 @@ def test_serialize_model(tmpdir: LocalPath):
     model = CatBoostClassifier(n_estimators=n_estimators, verbose=0)
     real_output = serialize_model(model, expected_output)
     assert real_output == expected_output
-    assert os.path.exists
 
 
 def test_evaluate_model(features_and_target: Tuple[pd.DataFrame, pd.Series]):
