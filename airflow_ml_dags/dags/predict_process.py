@@ -13,7 +13,7 @@ from vars import (
 
 
 with DAG(
-    "predict_pipeline",
+    "predict_process",
     default_args=DEFAULT_ARGS,
     schedule_interval="@daily",
     start_date=days_ago(1),
