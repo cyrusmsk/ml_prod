@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.svm import SVC
 
 
-@click.command("train_model")
+@click.command("train")
 @click.option("--input-dir")
 @click.option("--model-dir")
 def train_model(input_dir: str, model_dir: str):

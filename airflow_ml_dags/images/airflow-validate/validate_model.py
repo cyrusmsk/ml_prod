@@ -7,7 +7,7 @@ import numpy as np
 from sklearn import metrics
 
 
-@click.command("validate_model")
+@click.command("validate")
 @click.option("--input-dir")
 @click.option("--model-dir")
 def validate_model(data_dir: str, model_dir: str):

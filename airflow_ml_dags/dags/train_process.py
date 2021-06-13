@@ -39,7 +39,7 @@ with DAG(
     preprocess_data = DockerOperator(
         image="airflow-preprocess",
         command=f"--input-dir={RAW_DATA} "
-                f"--output-dir={PROC_DATA} "
+                f"--output-dir={PROC_DATA} ",
         network_mode="bridge",
         task_id="preprocess_data",
         do_xcom_push=False,

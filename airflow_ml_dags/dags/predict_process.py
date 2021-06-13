@@ -6,9 +6,9 @@ from airflow.utils.dates import days_ago
 from vars import (
     DEFAULT_ARGS,
     RAW_DATA,
-    PROC_DATA,
     LOCAL_DATA,
     MODEL_PATH,
+    PRED_DATA,
 )
 
 
