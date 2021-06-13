@@ -18,8 +18,7 @@ def validate_model(data_dir: str, model_dir: str):
     with open(os.path.join(model_dir, "model.pkl"), "rb") as input_file:
         model = pickle.load(input_file)
 
-    disp = metrics.plot_confusion_matrix(clf, X_test, y_test)
-    # Save metrics to local filesystem
+    disp = metrics.plot_confusion_matrix(model, X_test, y_test)
     
     os.makedirs(model_dir, exist_ok=True)
     with open(os.path.join(model_dir, "matrix.csv"), 'w') as output_file:
