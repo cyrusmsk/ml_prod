@@ -63,8 +63,8 @@ services:
       - postgres
     volumes:
       - logs:/opt/airflow/logs
-      - D:\RnD\MADE\Study\GitHub\cyrusmsk\airflow_ml_dags\dags\:/opt/airflow/dags/
-      - D:\RnD\MADE\Study\GitHub\cyrusmsk\airflow_ml_dags\data\:/opt/airflow/data/
+      - ./dags/:/opt/airflow/dags/
+      - ./data/:/opt/airflow/data/
       - /var/run/docker.sock:/var/run/docker.sock
     environment: *airflow_environment
     command: scheduler
@@ -73,6 +73,12 @@ services:
     build:
       context: images/airflow-ml-base
     image: airflow-ml-base
+    restart: "no"
+
+  download:
+    build:
+      context: images/airflow-generate-data
+    image: airflow-generate-data
     restart: "no"
 
 volumes:
