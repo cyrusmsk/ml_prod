@@ -1,19 +1,20 @@
 import os
-import pandas as pd
+import pickle
+
 import click
+import pandas as pd
 
 
-@click.command("predict")
+@click.command("preprocess")
 @click.option("--input-dir")
 @click.option("--output-dir")
-def preprocess(input_dir: str, output_dir):
-    data = pd.read_csv(os.path.join(input_dir, "data.csv"))
-    # do something instead
-    data["features"] = 0
-
+def preprocess(input_dir: str, output_dir: str):
+    features = pd.read_csv(os.path.join(input_dir, "data.csv"), index_col=0)
+    n_samples = len(features)
+    data = features.reshape((n_samples, -1))
     os.makedirs(output_dir, exist_ok=True)
     data.to_csv(os.path.join(output_dir, "data.csv"))
-
+    
 
 if __name__ == '__main__':
     preprocess()

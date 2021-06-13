@@ -4,21 +4,22 @@ import os
 import numpy as np
 import pandas as pd
 import click
+from sklearn import datasets
 
 
-@click.command("predict")
+@click.command("predict_model")
 @click.option("--input-dir")
 @click.option("--output-dir")
 @click.option("--model-dir")
-def predict(input_dir: str, output_dir: str, model_dir: str):
-    data = pd.read_csv(os.path.join(input_dir, "data.csv"), index_col=0)
+def predict_model(input_dir: str, output_dir: str, model_dir: str):
+    digits = datasets.load_digits()
     with open(os.path.join(model_dir, "model.pkl"), "rb") as input_file:
         model = pickle.load(input_file)
 
-    preds = model.predict(scaler.transform(data.values)).astype(np.int)
+    predicted = model.predict(digits.data)
     os.makedirs(output_dir, exist_ok=True)
-    np.savetxt(os.path.join(output_dir, "prediction.csv"), preds)
+    np.savetxt(os.path.join(output_dir, "prediction.csv"), predicted)
 
 
 if __name__ == '__main__':
-    predict()
+    predict_model()

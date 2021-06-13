@@ -13,15 +13,15 @@ from vars import (
 
 
 with DAG(
-    "train_pipeline",
+    "train_process",
     default_args=DEFAULT_ARGS,
     schedule_interval="@weekly",
     start_date=days_ago(1),
-    tags=["training"],
+    tags=["train_process"],
 ) as dag:
 
     data_sensor = FileSensor(
-        task_id="features-sensor",
+        task_id="data_sensor",
         filepath=f"{RAW_DATA}/data.csv",
         poke_interval=10,
         retries=10,
@@ -29,7 +29,7 @@ with DAG(
     )
 
     target_sensor = FileSensor(
-        task_id="target-sensor",
+        task_id="target_sensor",
         filepath=f"{RAW_DATA}/target.csv",
         poke_interval=10,
         retries=10,
@@ -40,9 +40,8 @@ with DAG(
         image="airflow-preprocess",
         command=f"--input-dir={RAW_DATA} "
                 f"--output-dir={PROC_DATA} "
-                f"--model-dir={MODEL_PATH}",
         network_mode="bridge",
-        task_id="preprocess-data",
+        task_id="preprocess_data",
         do_xcom_push=False,
         volumes=[f"{LOCAL_DATA}/:/data"],
     )
@@ -52,7 +51,7 @@ with DAG(
         command=f"--input-dir={PROC_DATA} "
                 f"--output-dir={PROC_DATA}",
         network_mode="bridge",
-        task_id="split-data",
+        task_id="split_data",
         do_xcom_push=False,
         volumes=[f"{LOCAL_DATA}/:/data"],
     )
@@ -60,16 +59,16 @@ with DAG(
     train_model = DockerOperator(
         image="airflow-train",
         command=f"--input-dir={PROC_DATA} "
-                f"--output-dir={MODEL_PATH}",
+                f"--model-dir={MODEL_PATH}",
         network_mode="bridge",
-        task_id="train-model",
+        task_id="train_model",
         do_xcom_push=False,
         volumes=[f"{LOCAL_DATA}/:/data"],
     )
 
     validate_model = DockerOperator(
         image="airflow-validate",
-        command=f"--data-dir={PROC_DATA} "
+        command=f"--input-dir={PROC_DATA} "
                 f"--model-dir={MODEL_PATH}",
         network_mode="bridge",
         task_id="validate_model",
