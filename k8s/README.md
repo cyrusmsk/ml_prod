@@ -1,11 +1,5 @@
 # Homework 4
 
-Открываем новое окружение:
-
-```conda create --name hw4```
-
-```conda activate hw4```
-
 Используются результаты из Hw2 - из docker-hub скачивается image
 ```cyrusmsk/online_inference:v1```
 
