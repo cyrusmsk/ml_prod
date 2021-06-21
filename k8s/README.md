@@ -18,9 +18,9 @@
 ```
 * Установил kubectl
 * Развернул kubernetes в Google Cloud (https://cloud.google.com/kubernetes-engine) (5 баллов)
-2) Написал просто манифест (online-inference-pod.yaml), на основе семинара (4 баллов)
-2а) Добавил requests/limits (online-inference-pod-resources.yaml) (2 баллов)
-9) Провел самооценку (1 - доп баллы)  
+* Написал просто манифест (online-inference-pod.yaml), на основе семинара (4 баллов)
+* Добавил requests/limits (online-inference-pod-resources.yaml) (2 баллов)
+* Провел самооценку (1 - доп баллы)  
 
 Итого: 12
 ```
